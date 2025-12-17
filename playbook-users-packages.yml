@@ -1,0 +1,85 @@
+- name: Manage users and install packages
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Create users
+      user:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - Openti
+        - Madok
+
+    - name: Create devops group
+      group:
+        name: devops_team
+        state: present
+
+    - name: Install firewalld
+      dnf:
+        name: firewalld
+        state: present
+
+    - name: Start and enable firewalld
+      systemd:
+        name: firewalld
+        state: started
+        enabled: yes
+
+    - name: Open HTTP port (80)
+      firewalld:
+        service: http
+        permanent: yes
+        state: enabled
+        immediate: yes
+
+    - name: Open HTTPS port (443)
+      firewalld:
+        service: https
+        permanent: yes
+        state: enabled
+        immediate: yes
+
+    - name: Open port 8080 for httpd
+      firewalld:
+        port: 8080/tcp
+        permanent: yes
+        state: enabled
+        immediate: yes
+
+    - name: Install nginx
+      dnf:
+        name: nginx
+        state: present
+
+    - name: Start and enable nginx
+      systemd:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: Install httpd
+      dnf:
+        name: httpd
+        state: present
+
+    - name: Change httpd port to 8080
+      lineinfile:
+        path: /etc/httpd/conf/httpd.conf
+        regexp: '^Listen'
+        line: 'Listen 8080'
+      notify: Restart httpd
+
+    - name: Start and enable httpd
+      systemd:
+        name: httpd
+        state: started
+        enabled: yes
+
+  handlers:
+    - name: Restart httpd
+      systemd:
+        name: httpd
+        state: restarted
+

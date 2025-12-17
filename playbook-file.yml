@@ -1,0 +1,37 @@
+- name: File managment system
+  hosts: all
+  gather_facts: false
+  become: true
+
+
+  tasks:
+    - name: Create a file called devops.txt
+      file:
+        path: /tmp/devops.txt
+        state: touch
+
+    - name: Add text to the file
+      shell: echo "I am a devops engineer $(webservers)" > /tmp/devops.txt
+
+    - name: Add text to file ussing lineinfile
+      lineinfile: 
+        path: /tmp/devops.txt
+        line: " this is my message"
+        create: yes
+
+    - name: Create a directory
+      file:
+        path: /tmp/demo_folder
+        state: directory
+
+    - name: Delete a direcory
+      file:
+        path: /tmp/demo_folder
+        state: absent
+
+    - name: Delete a file
+      file:
+        path: /tmp/devops.txt
+        state: absent
+
+      

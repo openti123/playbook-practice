@@ -1,0 +1,6 @@
+[1;35m[WARNING]: Platform linux on host node-2 is using the discovered Python interpreter at /usr/bin/python3.9, but[0m
+[1;35mfuture installation of another Python interpreter could change the meaning of that path. See[0m
+[1;35mhttps://docs.ansible.com/ansible-core/2.15/reference_appendices/interpreter_discovery.html for more information.[0m
+[1;35m[WARNING]: Platform linux on host node-1 is using the discovered Python interpreter at /usr/bin/python3.9, but[0m
+[1;35mfuture installation of another Python interpreter could change the meaning of that path. See[0m
+[1;35mhttps://docs.ansible.com/ansible-core/2.15/reference_appendices/interpreter_discovery.html for more information.[0m

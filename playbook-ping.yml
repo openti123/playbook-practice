@@ -1,0 +1,16 @@
+- name: Checking on hosts servers working
+  hosts: all
+  gather_facts: false
+
+  tasks:
+    - name: Ping the target servers
+      ping:
+
+    - name: check system uptime
+      shell: uptime
+
+    - name: check current servers
+      shell: whoami
+
+
+
