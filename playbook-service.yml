@@ -1,0 +1,30 @@
+- name: enabling packages installed
+  hosts: all 
+  become: true
+  gather_facts: false
+
+
+  tasks:
+    - name: install nginx
+      dnf:
+        name: nginx
+        state: present
+
+    - name: Start nginx
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+
+
+    - name: Restart nginx
+      service:
+        name: nginx
+        state: restarted
+
+    - name:
+      service:
+        name: nginx
+        state: stopped
+
