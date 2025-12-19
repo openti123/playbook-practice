@@ -1,0 +1,6 @@
+- name: install package using variable file
+  hosts: all
+  become: yes
+
+  vars_files:
+    vars.yml
