@@ -1,0 +1,25 @@
+- name: Configure database servers
+  hosts: all
+  become: true
+
+  vars:
+    db_user: admin
+    db_password: secret
+
+  tasks:
+    - name: Install PostgreSQL
+      dnf:
+        name: postgresql
+        state: present
+
+    - name: start postgreSql service
+      systemd:
+        name: postgresql
+        state: started
+        enabled: yes
+
+    - name: Create databse user
+      postgresql_user:
+        name: "{{ db_user }}"
+        password: "{{ db_password }}"
+        state: present

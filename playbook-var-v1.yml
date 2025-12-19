@@ -1,0 +1,13 @@
+- name: install nginx package using a variable
+  hosts: all
+  become: true
+
+  vars: 
+     pkg_name: nginx
+     
+
+  tasks:
+    - name: Insatll nginx package
+      dnf:
+        name: "{{ pkg_name }}"
+        state: present
