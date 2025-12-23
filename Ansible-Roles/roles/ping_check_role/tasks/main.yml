@@ -1,0 +1,8 @@
+- name: ping the nodes
+  ping:
+
+- name: check system uptime
+  shell: uptime
+
+- name: check current user
+  shell: whoami

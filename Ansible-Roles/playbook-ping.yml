@@ -1,0 +1,7 @@
+- name: Ping checks
+  hosts: all
+  gather_facts: false
+  become: true
+
+  roles:
+    -  ping_check_role
