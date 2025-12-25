@@ -1,0 +1,8 @@
+- name: file checks
+  hosts: all
+  gather_facts: false
+  become: true
+
+
+  roles:
+    - file_role
