@@ -1,0 +1,6 @@
+- name: System information
+  hosts: all
+  become: true
+
+  roles:
+    - system_config_role
